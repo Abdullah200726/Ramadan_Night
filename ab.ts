@@ -1,48 +1,34 @@
-#! /usr/bin/bash
+#! /usr/bin/env node
+
 
 import inquirer from "inquirer"
-
-// advice:break the steps of your program
-
-
-const randomNumber = Math.floor(Math.random() *6 +1);
-// console.log(randomNumber);
-const answers = await inquirer.prompt([
-{
-    name: "userGuessedNumber",
-    type: "number",
-    message: "please guess a number between 1-6: ",
-}
+const answer = await inquirer.prompt([{
+    message:"please enter first number",
+    type:"number",
+    name:"firstNumber"
+},
+{ message:"please Enter second number",
+  type:"number",
+  name:"secondNumber"
+},
+ {
+    message:"select the operators",
+    type:"list",
+    name:"operators",
+    choices:["addition", "subtraction", "multiplication", "division"] 
+ },
 ]);
-
-if(answers.userGuessedNumber === randomNumber){
-    console.log("congratulation you guessed right");
-}else {
-    console.log("better luck next time");
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+if(answer.operators == "addition"){
+    console.log(answer.firstNumber + answer.secondNumber)
+}else if(answer.operators == "subtraction"){
+    console.log(answer.firstNumber - answer.secondNumber)
+}else if (answer.operators == "multiplication"){
+    console.log(answer.firstNumber * answer.secondNumber)
+}else if (answer.operators == "division"){
+    console.log(answer.firstNumber / answer.secondNumber)
+}else{
+    console.log("please select the valid operators")
+};
 
 
 
